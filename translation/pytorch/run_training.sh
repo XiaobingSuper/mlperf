@@ -22,7 +22,7 @@ python  train.py ${DATASET_DIR} \
   --criterion label_smoothed_cross_entropy \
   --label-smoothing "0.1" \
   --max-tokens ${MAX_TOKENS} \
-  --max-epoch 30 \
+  --max-epoch 1 \
   --no-save \
   --update-freq 1 \
   --cuda\

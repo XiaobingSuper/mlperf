@@ -3,7 +3,7 @@
 **/__pycache__/ 
 **/run/
 **/build/
-**/data/
+translation/pytorch/data/
 **/cutlass/
 **/checkpoints/
 **/__pycache__/
