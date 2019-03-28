@@ -1,0 +1,10 @@
+*.zip
+recommendation/pytorch/ml-20m/
+recommendation/pytorch/__pycache__/ 
+recommendation/pytorch/run/
+translation/pytorch/build/
+translation/pytorch/data/
+translation/pytorch/cutlass/
+translation/pytorch/checkpoints/
+translation/pytorch/__pycache__/
+translation/pytorch/
