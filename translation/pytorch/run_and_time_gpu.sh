@@ -1,4 +1,4 @@
 #! /bin/bash
 # Options
 
-source run_trainingi_gpu.sh
+source run_training_gpu.sh
