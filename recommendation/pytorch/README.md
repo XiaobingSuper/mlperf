@@ -7,7 +7,7 @@ The model trains on binary information about whether or not a user interacted wi
 
 #### From Source
 
-1. Install [PyTorch v0.4.0](https://github.com/pytorch/pytorch/tree/v0.4.0)
+1. Install [PyTorch](https://pytorch.org/) for CPU and GPU version by conda.
 2. Install `unzip` and `curl`
 
 ```bash

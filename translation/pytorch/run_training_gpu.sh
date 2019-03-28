@@ -3,6 +3,10 @@ START=$(date +%s)
 START_FMT=$(date +%Y-%m-%d\ %r)
 echo "STARTING TIMING RUN AT ${START_FMT}"
 
+SEED=${SEED:-1}
+MAX_TOKENS=${MAX_TOKENS:-5120}
+DATASET_DIR="./data"
+
 # Includes online scoring
 python  train.py ${DATASET_DIR} \
   --seed ${SEED} \
@@ -23,6 +27,8 @@ python  train.py ${DATASET_DIR} \
   --label-smoothing "0.1" \
   --max-tokens ${MAX_TOKENS} \
   --max-epoch 1 \
+  --target-bleu "25.0" \
+  --ignore-case \
   --no-save \
   --update-freq 1 \
   --cuda\

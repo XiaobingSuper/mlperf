@@ -34,7 +34,7 @@ def main(args):
     if args.cuda:
         torch.cuda.set_device(args.device_id)
     from mlperf_compliance.mlperf_log import transformer_print
-    #transformer_print(key=mlperf_log.RUN_CLEAR_CACHES) #before this tag we should run clearing caches on the host
+    transformer_print(key=mlperf_log.RUN_CLEAR_CACHES) #before this tag we should run clearing caches on the host
     # mlperf compliance synchronization
 
     transformer_print(key=mlperf_log.RUN_START)
@@ -116,7 +116,7 @@ def main(args):
     transformer_print(key=mlperf_log.TRAIN_LOOP)
     while lr >= args.min_lr and epoch_itr.epoch < max_epoch and trainer.get_num_updates() < max_update and current_bleu < tgt_bleu:
         transformer_print(key=mlperf_log.TRAIN_EPOCH, value=epoch_itr.epoch)
-        import time
+
         start = time.time()
         epoch_itr = data.EpochBatchIterator(
             dataset=task.dataset(args.train_subset),
