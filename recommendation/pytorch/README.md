@@ -68,10 +68,15 @@ source ../verify_dataset.sh
 
 #### From Source
 
-Run the `run_and_time.sh` script with an integer seed value between 1 and 5
+Run the `run_and_time_gpu.sh` fro GPU device script with an integer seed value between 1 and 5
 
 ```bash
-source run_and_time.sh SEED
+source run_and_time_gpu.sh SEED
+```
+
+Run the `run_and_time_cpu.sh` script for CPU device with an integer seed value between 1 and 5
+```bash
+source run_and_time_cpu.sh SEED
 ```
 
 #### Docker Image
