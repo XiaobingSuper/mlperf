@@ -1,0 +1,9 @@
+*.zip
+**/ml-20m/
+**/__pycache__/ 
+**/run/
+**/build/
+**/data/
+**/cutlass/
+**/checkpoints/
+**/__pycache__/
