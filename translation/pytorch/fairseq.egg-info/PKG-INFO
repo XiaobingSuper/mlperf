@@ -42,8 +42,7 @@ Description:
         This problem uses Attention mechanisms to do language translation.
         
         ## Requirements
-        * [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
-        * [PyTorch 18.11-py3 NGC container](https://ngc.nvidia.com/registry/nvidia-pytorch)
+        * [PyTorch](https://pytorch.org/) for CPU and GPU version.
         
         # 2. Directions
         
@@ -51,58 +50,22 @@ Description:
         
         Downloading and preprocessing the data is handled inside submission scripts. To do this manually run 
             DATASET_DIR='/your/path/to/dataset/' bash run_preprocessing.sh
-        To download the data alone run
-            bash prepare-wmt14en2de.sh --scaling18 
             
         ### Steps to run and time
         
         ## Steps to launch training
         
-        ### NVIDIA DGX-1 (single node)
-        Launch configuration and system-specific hyperparameters for the NVIDIA DGX-1
-        single node submission are in the `config_DGX1.sh` script.
+        Run the `run_and_time_gpu.sh` for GPU device
         
-        Steps required to launch single node training on NVIDIA DGX-1:
-        
-        ```
-        docker build . -t mlperf-nvidia:translation
-        DATADIR=<path/to/data/dir> LOGDIR=<path/to/output/dir> DGXSYSTEM=DGX1 ./run.sub
+        ```bash
+        source run_and_time_gpu.sh
         ```
         
-        ### NVIDIA DGX-2 (single node)
-        Launch configuration and system-specific hyperparameters for the NVIDIA DGX-2
-        single node submission are in the `config_DGX2.sh` script.
-        
-        Steps required to launch single node training on NVIDIA DGX-2:
-        
+        Run the `run_and_time_cpu.sh` script for CPU device(multi-instance)
+        ```bash
+        source run_and_time_cpu.sh
         ```
-        docker build . -t mlperf-nvidia:translation
-        DATADIR=<path/to/data/dir> LOGDIR=<path/to/output/dir> DGXSYSTEM=DGX2 ./run.sub
-        ```
-        
-        ### NVIDIA DGX-1 (multi node)
-        Launch configuration and system-specific hyperparameters for the NVIDIA DGX-1
-        multi node submission are in the `config_DGX1_multi.sh` script.
-        
-        Steps required to launch multi node training on NVIDIA DGX-1:
-        
-        ```
-        docker build . -t mlperf-nvidia:translation
-        source config_DGX1_multi.sh
-        DATADIR=<path/to/data/dir> LOGDIR=<path/to/output/dir> DGXSYSTEM=DGX1_multi sbatch -N $DGXNNODES -t $WALLTIME run.sub
-        ```
-        
-        ### NVIDIA DGX-2 (multi node)
-        Launch configuration and system-specific hyperparameters for the NVIDIA DGX-2
-        multi node submission are in the `config_DGX2_multi.sh` script.
-        
-        Steps required to launch multi node training on NVIDIA DGX-2:
-        
-        ```
-        docker build . -t mlperf-nvidia:translation
-        source config_DGX2_multi.sh
-        DATADIR=<path/to/data/dir> LOGDIR=<path/to/output/dir> DGXSYSTEM=DGX2_multi sbatch -N $DGXNNODES -t $WALLTIME run.sub
-        ```
+        Note:  You can change the seed number in `run_and_training_cpu.sh` or `run_and_training_gpu.sh`
         
         # 3. Dataset/Environment
         ### Publication/Attribution

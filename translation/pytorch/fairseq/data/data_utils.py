@@ -119,7 +119,7 @@ class EpochBatchIterator(object):
     def __init__(
         self, dataset, max_tokens=None, max_sentences=None, max_positions=None,
         ignore_invalid_inputs=False, required_batch_size_multiple=1, seed=1,
-        num_shards=1, shard_id=0,
+        num_shards=1, shard_id=0, epoch=0
     ):
         assert isinstance(dataset, FairseqDataset)
         self.dataset = dataset
@@ -135,7 +135,7 @@ class EpochBatchIterator(object):
         with numpy_seed(self.seed):
             self.frozen_batches = tuple(self._batch_generator())
 
-        self.epoch = 0
+        self.epoch = epoch
         self._cur_epoch_itr = None
         self._next_epoch_itr = None
 

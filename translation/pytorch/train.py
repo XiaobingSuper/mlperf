@@ -106,18 +106,19 @@ def main(args):
     train_meter.start()
     valid_losses = [None]
     valid_subsets = args.valid_subset.split(',')
-    
+
     ctr = 0
     class DummyEpochBatchIterator:
         def __init__(self, epoch=0):
             self.epoch = epoch
-    
+
     epoch_itr = DummyEpochBatchIterator(0)
     transformer_print(key=mlperf_log.TRAIN_LOOP)
     while lr >= args.min_lr and epoch_itr.epoch < max_epoch and trainer.get_num_updates() < max_update and current_bleu < tgt_bleu:
         transformer_print(key=mlperf_log.TRAIN_EPOCH, value=epoch_itr.epoch)
 
         start = time.time()
+
         epoch_itr = data.EpochBatchIterator(
             dataset=task.dataset(args.train_subset),
             max_tokens=args.max_tokens,
@@ -128,16 +129,14 @@ def main(args):
             seed=args.seed,
             num_shards=args.distributed_world_size,
             shard_id=args.distributed_rank,
-            #epoch=0
-            #epoch=epoch_itr.epoch if ctr is not 0 else 0
+            epoch=epoch_itr.epoch if ctr is not 0 else 0
         )
         print("got epoch iterator", time.time() - start)
-           
-                
+
         # Load the latest checkpoint if one is available
         if ctr is 0:
             load_checkpoint(args, trainer, epoch_itr)
-        
+
         # train for one epoch
         start = time.time()
         train(args, trainer, task, epoch_itr)
@@ -162,10 +161,10 @@ def main(args):
         # Save checkpoint
         if epoch_itr.epoch % args.save_interval == 0:
             save_checkpoint(args, trainer, epoch_itr, valid_losses[0])
-        
+
         ctr = ctr + 1
         print("validation and scoring ", time.time() - start)
-        
+
     train_meter.stop()
     transformer_print(key=mlperf_log.RUN_STOP)
     transformer_print(key=mlperf_log.RUN_FINAL)
@@ -221,7 +220,10 @@ def train(args, trainer, task, epoch_itr):
         # ignore the first mini-batch in words-per-second calculation
         if i == 0:
             trainer.get_meter('wps').reset()
-
+        '''
+        if i==100:
+            break
+        '''
         if args.profile is not None and i == args.profile:
             import sys
             sys.exit()

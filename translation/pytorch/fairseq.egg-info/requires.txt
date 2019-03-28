@@ -1,4 +1,3 @@
 cffi
 numpy
-torch
 tqdm

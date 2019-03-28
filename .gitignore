@@ -4,6 +4,8 @@
 **/run/
 **/build/
 translation/pytorch/data/
+translation/pytorch/dist/
+translation/pytorch/fairseq.egg-info/
 **/cutlass/
 **/checkpoints/
 **/__pycache__/
