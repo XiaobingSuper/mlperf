@@ -1,3 +1,7 @@
+# Note
+
+This repo base on mlperf [benchmark](https://github.com/mlperf/training/tree/master/recommendation), I just give a running script for running well on CPU device, you can also use the original code.
+
 # 1. Problem
 This task benchmarks recommendation with implicit feedback on the [MovieLens 20 Million (ml-20m) dataset](https://grouplens.org/datasets/movielens/20m/) with a [Neural Collaborative Filtering](http://dl.acm.org/citation.cfm?id=3052569) model.
 The model trains on binary information about whether or not a user interacted with a specific item.
@@ -15,43 +19,19 @@ sudo apt-get install unzip curl
 ```
 3. Checkout the MLPerf repo
 ```bash
-git clone https://github.com/mlperf/reference.git
+git clone https://github.com/XiaobingSuper/mlperf.git
 ```
 
 4. Install other python packages
 
 ```bash
-cd reference/recommendation/pytorch
+cd mlperf/recommendation/pytorch
 pip install -r requirements.txt
 ```
 
 #### From Docker
 
-1. Checkout the MLPerf repo
-
-```bash
-git clone https://github.com/mlperf/reference.git
-```
-2. Install CUDA and Docker
-
-```bash
-source reference/install_cuda_docker.sh
-```
-
-3. Get the docker image for the recommendation task
-
-```bash
-# Pull from Docker Hub
-docker pull mlperf/recommendation:v0.5
-```
-
-or
-
-```bash
-# Build from Dockerfile
-cd reference/recommendation/pytorch
-sudo docker build -t mlperf/recommendation:v0.5 .
-```
+please see orginal [benchmark] (https://github.com/mlperf/training/tree/master/recommendation/pytorch)
 
 ### Steps to download and verify data
 
@@ -81,11 +61,7 @@ source run_and_time_cpu.sh SEED
 
 #### Docker Image
 
-```bash
-sudo nvidia-docker run -i -t --rm --ipc=host \
-    --mount "type=bind,source=$(pwd),destination=/mlperf/experiment" \
-    mlperf/recommendation:v0.5 SEED
-```
+please see orginal [benchmark] (https://github.com/mlperf/training/tree/master/recommendation/pytorch)
 
 # 3. Dataset/Environment
 ### Publication/Attribution
